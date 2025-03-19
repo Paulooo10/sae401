@@ -11,7 +11,17 @@
       <h2 class="title">Connexion</h2>
 
       <div class="input-group">
-        <label>Identifiant :</label>
+        <label>Nom :</label>
+        <input v-model="nom" type="text" placeholder="Nom" />
+      </div>
+
+      <div class="input-group">
+        <label>Prénom :</label>
+        <input v-model="prenom" type="text" placeholder="Prénom" />
+      </div>
+
+      <div class="input-group">
+        <label>Adresse universitaire :</label>
         <input v-model="adresse_universitaire" type="email" placeholder="Adresse universitaire" />
       </div>
 
@@ -44,6 +54,8 @@ import axios from 'axios';
 export default {
   data() {
     return {
+      nom: '',
+      prenom: '',
       adresse_universitaire: '',
       password: '',
       errorMessage: ''
@@ -51,7 +63,7 @@ export default {
   },
   computed: {
     isFormInvalid() {
-      return !this.adresse_universitaire || !this.password;
+      return !this.nom || !this.prenom || !this.adresse_universitaire || !this.password;
     }
   },
   methods: {
@@ -62,6 +74,7 @@ export default {
           password: this.password
         });
 
+        localStorage.setItem('token', response.data.token);
         localStorage.setItem('user', JSON.stringify(response.data.user));
 
         const userSemester = response.data.user.semester;
@@ -74,3 +87,4 @@ export default {
   }
 }
 </script>
+
