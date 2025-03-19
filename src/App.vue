@@ -2,7 +2,7 @@
   <div>
     <!-- Afficher le H1 et les boutons uniquement si la route est "/" -->
     <div v-if="$route.path === '/'">
-      <h1>Bienvenue sur mon site</h1> 
+      <h1>Bienvenue</h1> 
       <nav>
         <router-link to="/register">
           <button>S'inscrire</button>
@@ -15,9 +15,11 @@
 
     <!-- Affichage des composants selon la route -->
     <router-view />
+
+    <!-- Fonctionnalités principales -->
+
   </div>
 </template>
-
 <script>
 import axios from 'axios';
 
@@ -57,30 +59,47 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+/* Style général */
+
+div {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  color: #333;
+  text-align: center;
+}
+
 nav {
-  margin-bottom: 20px;
-}
-nav a {
-  margin: 0 10px;
-  text-decoration: none;
-  color: blue;
-}
-nav a:hover {
-  text-decoration: underline;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
 
 button {
-  margin-left: 10px;
-  padding: 5px 10px;
   background-color: #007bff;
   color: white;
   border: none;
+  padding: 10px 20px;
+  margin: 0 10px;
   cursor: pointer;
   border-radius: 5px;
 }
 
 button:hover {
   background-color: #0056b3;
+}
+
+
+
+/* Style pour les messages d'erreur */
+.error-message {
+  color: red;
+  text-align: center;
+  margin-top: 20px;
 }
 </style>
