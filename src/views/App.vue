@@ -59,30 +59,4 @@ export default {
 };
 </script>
 
-<style>
-nav {
-  margin-bottom: 20px;
-}
-nav a {
-  margin: 0 10px;
-  text-decoration: none;
-  color: blue;
-}
-nav a:hover {
-  text-decoration: underline;
-}
 
-button {
-  margin-left: 10px;
-  padding: 5px 10px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-button:hover {
-  background-color: #0056b3;
-}
-</style>

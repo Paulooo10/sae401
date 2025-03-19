@@ -1,20 +1,40 @@
 <template>
-  <div>
-    <h2>Connexion</h2>
+  <div class="auth-container">
+    <div class="auth-box">
+      <div class="logo">
+        <img src="@/assets/logo.png" alt="MMI IUT de Troyes" />
+      </div>
+      <p class="description">
+        Cette application permet aux enseignants de gérer les devoirs et aux étudiants de les consulter facilement.
+      </p>
 
-    <input v-model="nom" type="text" placeholder="Nom">
-    <input v-model="prenom" type="text" placeholder="Prénom">
-    <input v-model="adresse_universitaire" type="email" placeholder="Adresse universitaire">
-    <input v-model="password" type="password" placeholder="Mot de passe">
+      <h2 class="title">Connexion</h2>
 
-    <!-- Bouton désactivé et grisé tant que le formulaire est invalide -->
-    <button @click="login" :disabled="isFormInvalid" :class="{ 'disabled-button': isFormInvalid }">
-      Se connecter
-    </button>
+      <div class="input-group">
+        <label>Identifiant :</label>
+        <input v-model="adresse_universitaire" type="email" placeholder="Adresse universitaire" />
+      </div>
 
-    <p>Pas encore inscrit ? <router-link to="/register">Créer un compte</router-link></p>
+      <div class="input-group">
+        <label>Mot de passe :</label>
+        <input v-model="password" type="password" placeholder="Mot de passe" />
+      </div>
 
-    <p v-if="errorMessage" style="color: red;">{{ errorMessage }}</p>
+      <button @click="login" :disabled="isFormInvalid" class="btn" :class="{ 'disabled-button': isFormInvalid }">
+        Se connecter
+      </button>
+
+      <p class="link-text">
+        Pas encore inscrit ? <router-link to="/register">Créez votre compte</router-link>.
+      </p>
+
+      <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
+
+      <div class="support">
+        <p>En cas de problème de connexion, contactez le support :</p>
+        <a href="mailto:intranet.iut-troyes@univ-reims.fr">intranet.iut-troyes@univ-reims.fr</a>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -24,8 +44,6 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      nom: '',
-      prenom: '',
       adresse_universitaire: '',
       password: '',
       errorMessage: ''
@@ -33,12 +51,10 @@ export default {
   },
   computed: {
     isFormInvalid() {
-      // Vérifie si tous les champs sont remplis
-      return !this.nom || !this.prenom || !this.adresse_universitaire || !this.password;
+      return !this.adresse_universitaire || !this.password;
     }
   },
   methods: {
-    // Fonction de connexion
     async login() {
       try {
         const response = await axios.post('http://localhost:5000/login', {
@@ -46,52 +62,15 @@ export default {
           password: this.password
         });
 
-        // Sauvegarde les informations de l'utilisateur dans localStorage
         localStorage.setItem('user', JSON.stringify(response.data.user));
 
-        // Redirection en fonction du semestre
         const userSemester = response.data.user.semester;
+        this.$router.push(userSemester ? `/${userSemester}` : '/home');
 
-        if (userSemester === 'BUT1') {
-          this.$router.push('/BUT1');  // Redirection vers la page BUT1
-        } else if (userSemester === 'BUT2') {
-          this.$router.push('/BUT2');  // Redirection vers la page BUT2
-        } else if (userSemester === 'BUT3') {
-          this.$router.push('/BUT3');  // Redirection vers la page BUT3
-        } else {
-          this.$router.push('/home');  // Redirection vers la page d'accueil pour d'autres semestres
-        }
-        
       } catch (error) {
-        console.error(error);
         this.errorMessage = 'Erreur de connexion. Vérifiez vos identifiants.';
       }
     }
   }
 }
 </script>
-
-<style scoped>
-/* Style pour le bouton désactivé */
-.disabled-button {
-  opacity: 0.5; /* Rend le bouton plus transparent */
-  cursor: not-allowed; /* Change le curseur en "non autorisé" */
-  background-color: #ccc; /* Couleur de fond grisée */
-  color: #666; /* Couleur du texte grisée */
-  border: 1px solid #999; /* Bordure grisée */
-}
-
-/* Style par défaut du bouton */
-button {
-  padding: 10px 20px;
-  background-color: #42b983; /* Couleur verte par défaut */
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-button:hover:not(.disabled-button) {
-  background-color: #369f6e; /* Couleur verte plus foncée au survol */
-}
-</style>

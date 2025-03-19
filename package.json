@@ -9,6 +9,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "axios": "^1.8.3",
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1",
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"
   },
@@ -16,5 +23,18 @@
     "@vitejs/plugin-vue": "^5.2.1",
     "vite": "^6.1.0",
     "vite-plugin-vue-devtools": "^7.7.2"
-  }
+  },
+  "description": "This template should help get you started developing with Vue 3 in Vite.",
+  "main": "vite.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Paulooo10/sae401.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Paulooo10/sae401/issues"
+  },
+  "homepage": "https://github.com/Paulooo10/sae401#readme"
 }

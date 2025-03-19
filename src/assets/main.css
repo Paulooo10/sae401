@@ -1,35 +1,98 @@
 @import './base.css';
 
-#app {
-  max-width: 1280px;
+
+body{
   margin: 0 auto;
-  padding: 2rem;
-  font-weight: normal;
+
 }
 
-a,
-.green {
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #1e1e1e;
+}
+
+.auth-box {
+  background-color: #222;
+  padding: 30px;
+  width: 400px;
+  text-align: center;
+  border-radius: 3px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.logo img {
+  width: 120px;
+}
+
+.description {
+  color: #aaa;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.title {
+  color: #fff;
+  font-size: 22px;
+}
+
+.input-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.input-group label {
+  color: #ccc;
+  font-size: 14px;
+  display: block;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  background: #333;
+  border: none;
+  color: #fff;
+  border-radius: 4px;
+}
+
+.btn {
+  width: 100%;
+  padding: 12px;
+  background: #0099cc;
+  border: none;
+  color: white;
+  font-size: 16px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.disabled-button {
+  background: #555;
+  cursor: not-allowed;
+}
+
+.link-text {
+  margin-top: 10px;
+  color: #bbb;
+}
+
+.link-text a {
+  color: #00ccff;
   text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-  padding: 3px;
 }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
+.error-message {
+  color: red;
+  margin-top: 10px;
 }
 
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
+.support {
+  margin-top: 20px;
+  font-size: 13px;
+  color: #aaa;
 }
+
+
